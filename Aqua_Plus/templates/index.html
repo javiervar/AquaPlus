@@ -1,0 +1,24 @@
+{% extends 'base.html' %} {%block title%}Login{%endblock%} {%block content%}
+{% load staticfiles %}
+<form class="login">
+    <div class="logo">
+            <img src="{{baseUrl}}/img/water-drop.png" alt="">
+            <h3 >AQUA PLUS</h3>
+    </div>
+       
+        
+    <div class="form-group">
+        <label for="exampleInputEmail1" class="text_color">CORREO</label>
+        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="Email"
+            placeholder="Correo">
+    </div>
+    <div class="form-group">
+        <label for="exampleInputPassword1" class="text_color">CONTRASENA</label>
+        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Contrasena">
+    </div>
+
+    <button type="submit" class="btn secondary_color text_color">Entrar</button>
+</form>
+
+
+{%endblock%}

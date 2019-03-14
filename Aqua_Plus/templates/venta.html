@@ -1,0 +1,77 @@
+{% extends 'base.html' %} {%block title%}Login{%endblock%} {%block content%}
+
+    <nav class="navbar navbar-light  justify-content-between light_primary_color">
+            <a class="navbar-brand" href="/"><img src="{{baseUrl}}/img/water-drop.png" alt="" width="50px" height="50px"></a>
+            <form class="form-inline">
+              <button class="btn btn-success my-2 my-sm-0" style="float:right" type="submit">Cerrar sesion</button>            </form>
+    </nav>
+
+
+<div class="container" ng-controller="ventaController" >
+    <div class="row align-items-center panel-venta">
+        <input type="hidden" ng-model="tipoVenta">
+        <input type="hidden" ng-model="precio" value="{{venta.0.precio}}">
+        <div class="col" style="background:#fff;padding: 10px;">
+            <div class="row">
+                <div class="col">
+                    <button class="btn light_primary_color tipo-venta" ng-click="tipoVenta=1">
+                        <img src="{{baseUrl}}/img/garrafon.jpg" alt="" width="100px" height="100px">
+                        <h4>GARRAFON</h4>
+                        <h3>$ {{venta.0.precio}}</h3>
+                    </button>
+                </div>
+                <div class="col">
+                    <button href="" class="btn btn btn-light tipo-venta" ng-click="tipoVenta=2">
+                        <img src=" {{baseUrl}}/img/liter.png" alt="" width="100px" height="100px">
+                        <h4>LITRO</h4>
+                        <h3>$ {{venta.1.precio}}</h3>
+                    </button>
+                </div>
+            </div>
+            <div class="row" style="margin-top:50px; text-align: center">
+                <div class="col">
+                    <div class="form-group" style="text-align: left;width:70%;margin:0 auto;">
+                        <label for="label">Cantidad:</label>
+                        <div class="row">
+                            <div class="col-6">
+                                <input type="number" class="form-control " id="cantidad" ng-modal="cantidad">
+                            </div>
+                            <div class="col-5">
+                                <button class="btn btn-success" type="button" ng-click="mostrarResumen()">VENDER</button>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+       
+
+    </div>
+</div>
+
+<div id="resumenModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+      
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">CONFIRMACION</h4>
+            </div>
+            <div class="modal-body">
+                {[{cantidad}]}
+                {[{precio}]}
+              <p>TOTAL: {[{cantidad}]}</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-success" data-dismiss="modal">Continuar</button>
+            </div>
+          </div>
+      
+        </div>
+      </div>
+
+{%endblock%}

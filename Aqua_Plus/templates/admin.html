@@ -1,0 +1,159 @@
+{% extends 'base.html' %} {%block title%}Login{%endblock%} {%block content%}
+<div ng-controller="adminController">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/"><img src="{{baseUrl}}/img/water-drop.png" alt="" width="50px"
+                height="50px"></a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#trabajadores" ng-click="toggleMenu(1)">Trabajadores <span
+                            class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#reportes" ng-click="toggleMenu(2)">Reportes</a>
+                </li>
+
+
+            </ul>
+            <form class="form-inline">
+                <button class="btn btn-success my-2 my-sm-0" style="float:right" type="button"
+                    ng-click="cerrar()">Cerrar
+                    sesion</button> </form>
+        </div>
+
+    </nav>
+
+
+    <div class="container" ng-if="trabajadores">
+        <div class="row">
+            <div class="col" style="text-align:center">
+                <h2>Trabajadores</h2>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col">
+                <button class="btn btn-success" data-toggle="modal" data-target="#agregar">Agregar</button>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col">
+                <table class="table">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">Correo</th>
+                            <th scope="col">Contrasena</th>
+                            <th scope="col">Accion</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="usuario in usuarios">
+                            <th scope="row">{[{usuario.pk}]}</th>
+                            <td>{[{usuario.fields.correo}]}</td>
+                            <td>{[{usuario.fields.contrasena}]}</td>
+                            <td><button class="btn btn-danger"
+                                    ng-click="abrirModalEliminarUsu(usuario.pk)">Eliminar</button></td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+        <div id="eliminarUsuario" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Esta seguro de eliminar este usuario?</h4>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">NO</button>
+                        <button type="button" ng-click="eliminarUsuario()" class="btn btn-primary">SI</button>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div id="agregar" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Agregar nuevo trabajador</h4>
+                    </div>
+                    <form ng-submit="guardarUsuario(correo,pass)">
+                        <div class="modal-body">
+
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Correo</label>
+                                <input type="email" class="form-control" id="exampleInputEmail1"
+                                    aria-describedby="emailHelp" ng-model="correo">
+
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Contrasena</label>
+                                <input type="password" class="form-control" id="exampleInputPassword1" ng-model="pass">
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-success">Guardar</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="container" ng-if="reportes">
+        <div class="row">
+            <div class="col" style="text-align:center">
+                <h2>Reportes</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <table class="table">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">Fecha</th>
+                            <th scope="col">Vendedor</th>
+                            <th scope="col">Tipo de venta</th>
+                            <th scope="col">Cantidad</th>
+                            <th scope="col">Total ($)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="reporte in reportesArr">
+                            <th scope="row">{[{reporte.pk}]}</th>
+                            <td>{[{reporte.fields.fecha}]}</td>
+                            <td>{[{reporte.fields.vendedor}]}</td>
+                            <td>{[{reporte.fields.tipo}]}</td>
+                            <td>{[{reporte.fields.cantidad}]}</td>
+                            <td>{[{reporte.fields.total}]}</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+
+{%endblock%}

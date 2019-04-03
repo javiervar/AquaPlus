@@ -16,7 +16,8 @@ class TipoVenta(models.Model):
         return str(self.tipo)
 
 class Venta(models.Model):
-    fecha=models.DateField(default=None)
+    vendedor=models.ForeignKey('Usuario', on_delete=models.CASCADE,null=True)
+    fecha=models.DateTimeField(auto_now_add=True)
     cantidad=models.IntegerField(default=1)
     tipo=models.ForeignKey('TipoVenta', on_delete=models.CASCADE)
     total=models.DecimalField(max_digits=10, decimal_places=2)

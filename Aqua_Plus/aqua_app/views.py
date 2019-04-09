@@ -39,9 +39,22 @@ class VentaView(APIView):
     def get(self,request):
         ventas=Venta.objects.all()
         print(ventas)
+        retrn=[]
+        for value in ventas:
+            ret={}
+            print(value)
+            ret['tipo']=value.tipo.tipo
+            ret['id']=value.id
+            ret['fecha']=value.fecha
+            ret['vendedor']=value.vendedor.correo
+            ret['cantidad']=value.cantidad
+            ret['total']=value.total
+            print(value.vendedor.correo)
+            retrn.append(ret)
+        print(retrn)
         response_data={}
         response_data['message'] = serializers.serialize('json', ventas)
-        return HttpResponse(JsonResponse(response_data), content_type="application/json")
+        return Response(retrn)
 
 
 

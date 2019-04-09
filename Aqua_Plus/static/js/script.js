@@ -79,9 +79,8 @@ app.controller('adminController', ['$scope', '$http', function ($s, $h) {
             method: 'GET',
             url: '../reportes/'
         }).then(function successCallback(response) {
-            var obj = JSON.parse(response.data.message)
-            console.log(obj);
-            $s.reportesArr = obj;
+            console.log(response);
+            $s.reportesArr = response.data;
         });
     }
 

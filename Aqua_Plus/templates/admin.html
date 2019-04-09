@@ -121,6 +121,13 @@
                 <h2>Reportes</h2>
             </div>
         </div>
+
+        <div class="row">
+                <div class="form-group">
+                        <label for="exampleInputEmail1">Buscar</label>
+                        <input type="text" class="form-control"   ng-model="search">
+             </div>
+            </div>
         <div class="row">
             <div class="col">
                 <table class="table">
@@ -135,13 +142,13 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="reporte in reportesArr">
-                            <th scope="row">{[{reporte.pk}]}</th>
-                            <td>{[{reporte.fields.fecha}]}</td>
-                            <td>{[{reporte.fields.vendedor}]}</td>
-                            <td>{[{reporte.fields.tipo}]}</td>
-                            <td>{[{reporte.fields.cantidad}]}</td>
-                            <td>{[{reporte.fields.total}]}</td>
+                        <tr ng-repeat="reporte in reportesArr |filter:search">
+                            <th scope="row">{[{reporte.id}]}</th>
+                            <td>{[{reporte.fecha}]}</td>
+                            <td>{[{reporte.vendedor}]}</td>
+                            <td>{[{reporte.tipo}]}</td>
+                            <td>{[{reporte.cantidad}]}</td>
+                            <td>{[{reporte.total}]}</td>
                         </tr>
 
                     </tbody>
